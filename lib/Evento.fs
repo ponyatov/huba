@@ -65,6 +65,12 @@ github: {GITHUB}/{APP}
 {ABOUT}"
     )
 
+let doc: unit =
+    mkdir "doc"
+    File.WriteAllText("doc/.gitignore", "html/\n!.gitignore\n")
+
+let LOGO = "cp ~/icons/control64.png doc/logo.png"
+
 let COMMIT = "git add -A ; git commit -am \".\""
 let PUSH = $"git push -uv gh {USER}"
 
@@ -72,10 +78,6 @@ let PUSH = $"git push -uv gh {USER}"
 let bin: unit =
     mkdir "bin"
     File.WriteAllText("bin/.gitignore", "*\n!.gitignore\n")
-
-let doc: unit =
-    mkdir "doc"
-    File.WriteAllText("doc/.gitignore", "html/\n!.gitignore\n")
 
 let lib: unit =
     mkdir "lib"
