@@ -135,6 +135,6 @@ let files: unit =
 let project: unit =
     dirs
     files
-    cross
+    cross // Cross.fs
 
 COMMIT
