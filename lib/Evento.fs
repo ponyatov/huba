@@ -70,6 +70,7 @@ let doc: unit =
     File.WriteAllText("doc/.gitignore", "html/\n!.gitignore\n")
 
 let LOGO = "cp ~/icons/control64.png doc/logo.png"
+let DOXY = "doxygen -l ; mv DoxygenLayout.xml doc/"
 
 let COMMIT = "git add -A ; git commit -am \".\""
 let PUSH = $"git push -uv gh {USER}"
