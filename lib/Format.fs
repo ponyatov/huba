@@ -18,10 +18,29 @@ AllowShortFunctionsOnASingleLine: All
     )
 
 let prettier: unit = //
-    File.WriteAllText(".prettierc", "")
+    File.WriteAllText(
+        ".prettierc",
+        """{
+    "tabWidth"    : 4,
+    "useTabs"     : false,
+    "endOfLine"   : "lf",
+    "singleQuote" : true,
+    "semi"        : true,
+    "printWidth"  : 80
+}
+"""
+    )
 
 let editorconfig: unit = //
-    File.WriteAllText(".editorconfig", "")
+    File.WriteAllText(
+        ".editorconfig",
+        """# fantomas config
+indent_size = 4
+max_line_length = 80
+end_of_line = lf
+insert_final_newline = true
+"""
+    )
 
 let format: unit = //
     cf
