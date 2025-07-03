@@ -75,7 +75,6 @@ let DOXY = "doxygen -l ; mv DoxygenLayout.xml doc/"
 let COMMIT = "git add -A ; git commit -am \".\""
 let PUSH = $"git push -uv gh {USER}"
 
-
 let bin: unit =
     mkdir "bin"
     File.WriteAllText("bin/.gitignore", "*\n!.gitignore\n")
