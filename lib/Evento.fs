@@ -29,7 +29,9 @@ let touch (path: string) : unit =
 let mkdir (path: string) : unit =
     if not (Directory.Exists(path)) then
         Directory.CreateDirectory(path) |> ignore
-    touch (Path.Combine(path, ".gitignore"))
+    let giti = Path.Combine(path, ".gitignore")
+    if not (File.Exists(giti)) then
+        File.WriteAllText(giti,"!.gitignore\n")
 
 // env
 let USER = Environment.UserName

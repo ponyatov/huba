@@ -38,8 +38,10 @@ extern void  yyerror(char *msg);
     )
 
 let cpp: unit =
-    File.WriteAllText($"src/{APP}.cpp",
-        INCLUDE + """
+    File.WriteAllText(
+        $"src/{APP}.cpp",
+        INCLUDE
+        + """
 
 void arg(int argc, char *argv) {  //
     fprintf(stderr, "arg[%i] = <%s>\n", argc, argv);
@@ -51,22 +53,30 @@ int main(int argc, char *argv[]) {  //
         arg(i, argv[i]);
     }
 }
-""")
+"""
+    )
 
 let lex: unit = //
-    File.WriteAllText($"src/{APP}.lex", 
-    "%{\n    "+INCLUDE+"""
+    File.WriteAllText(
+        $"src/{APP}.lex",
+        "%{\n    "
+        + INCLUDE
+        + """
     char *yyfile = nullptr;
 %}
 
 %option noyywrap yylineno
 
 %%
-""" )
+"""
+    )
 
 let yacc: unit = //
-    File.WriteAllText($"src/{APP}.yacc", 
-    "%{\n    "+INCLUDE+"""
+    File.WriteAllText(
+        $"src/{APP}.yacc",
+        "%{\n    "
+        + INCLUDE
+        + """
 %}
 
 %%
@@ -78,4 +88,5 @@ void yyerror(char *msg) {
             yyfile, yylineno, msg, yytext);
     exit(-1);
 }
-""" )
+"""
+    )
