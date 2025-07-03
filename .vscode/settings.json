@@ -1,52 +1,4 @@
-module VSCode
-
-let vscode: unit =
-    mkdir ".vscode"
-    c_cpp_properties
-    extensions
-    tasks
-    launch
-    settings
-
-let c_cpp_properties: unit =
-    File.WriteAllText(
-        ".vscode/c_cpp_properties.json",
-        """{
-    "version": 4,
-    "env":{
-        "appInclude": [
-            "${workspaceFolder}/inc/**",
-            "${workspaceFolder}/tmp/**",
-            "${workspaceFolder}/src/**"
-        ]
-    },
-    "configurations": [
-        {
-            "name"                 : "cmake",
-            "configurationProvider": "ms-vscode.cmake-tools",
-            "mergeConfigurations"  :  true,
-            "includePath": [
-                "${appInclude}"
-            ],
-            "defines": [
-                "PC", "I5", "X86_64", "LINUX"
-            ]
-        }
-    ]
-}
-"""
-    )
-
-let extensions: unit = File.WriteAllText(".vscode/extensions.json", "{\n}\n")
-
-let tasks: unit = File.WriteAllText(".vscode/tasks.json", "{\n}\n")
-
-let launch: unit = File.WriteAllText(".vscode/launch.json", "{\n}\n")
-
-let settings: unit =
-    File.WriteAllText(
-        ".vscode/settings.json",
-        """{
+{
     // files
     "C_Cpp.files.exclude": {
         "ref":true,
@@ -157,5 +109,3 @@ let settings: unit =
           "CHERE_INVOKING": "1",
         }}},
 }
-"""
-    )

@@ -39,8 +39,12 @@ let HOME = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
 mkdir $"{HOME}/{APP}"
 Directory.SetCurrentDirectory($"{HOME}/{APP}")
 let CWD = Environment.CurrentDirectory
-mkdir "lib"
-let CP = $"cp ~/em/lib/*.fs lib/"
+
+let lib: unit =
+    mkdir "lib"
+    File.WriteAllText($"lib/{APP}.ini", "# line comment\n")
+    let CP = $"cp ~/em/lib/*.fs lib/"
+
 let RC = "ln -fs ../rc rc"
 let CODE = $"excode ."
 
@@ -79,20 +83,6 @@ let bin: unit =
     mkdir "bin"
     File.WriteAllText("bin/.gitignore", "*\n!.gitignore\n")
 
-let lib: unit =
-    mkdir "lib"
-    File.WriteAllText($"lib/{APP}.ini", "# line comment\n")
-
-let inc: unit = mkdir "inc"
-
-let src: unit =
-    Directory.CreateDirectory("src") |> ignore
-    File.WriteAllText("src/.gitignore", "!.gitignore\n")
-    hpp
-    cpp
-    lex
-    yacc
-
 let tmp: unit =
     Directory.CreateDirectory("tmp") |> ignore
     File.WriteAllText("tmp/.gitignore", "*\n!.gitignore\n")
@@ -100,7 +90,6 @@ let tmp: unit =
 let ref: unit =
     Directory.CreateDirectory("ref") |> ignore
     File.WriteAllText("ref/.gitignore", "*\n!.gitignore\n")
-
 
 let dirs: unit =
     vscode

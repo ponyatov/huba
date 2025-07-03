@@ -1,8 +1,18 @@
 module Cpp
 
+let src: unit =
+    mkdir "inc"
+    mkdir "src"
+    hpp
+    cpp
+    lex
+    yacc
+
 let HFILE (name: string) : string =
     let upper = name.ToUpper()
     $"_{upper}_H_"
+
+let INCLUDE = $"#include \"{APP}.hpp\""
 
 let hpp: unit = //
     let H = HFILE APP
@@ -29,7 +39,7 @@ extern void  yyerror(char *msg);
 
 let cpp: unit =
     File.WriteAllText($"src/{APP}.cpp",
-        $"#include \"{APP}.hpp\""+"""
+        INCLUDE + """
 
 void arg(int argc, char *argv) {  //
     fprintf(stderr, "arg[%i] = <%s>\n", argc, argv);
@@ -44,9 +54,8 @@ int main(int argc, char *argv[]) {  //
 """)
 
 let lex: unit = //
-    let H = $"#include \"{APP}.hpp\""
     File.WriteAllText($"src/{APP}.lex", 
-    "%{\n    "+H+"""
+    "%{\n    "+INCLUDE+"""
     char *yyfile = nullptr;
 %}
 
@@ -56,9 +65,8 @@ let lex: unit = //
 """ )
 
 let yacc: unit = //
-    let H = $"#include \"{APP}.hpp\""
     File.WriteAllText($"src/{APP}.yacc", 
-    "%{\n    "+H+"""
+    "%{\n    "+INCLUDE+"""
 %}
 
 %%
