@@ -76,8 +76,7 @@ let doc: unit =
 let LOGO = "cp ~/icons/control64.png doc/logo.png"
 let DOXY = "doxygen -l ; mv DoxygenLayout.xml doc/"
 
-let COMMIT = "git add -A ; git commit -am \".\""
-let PUSH = $"git push -uv gh {USER}"
+let COMMIT = $"git add -A ; git commit -am \".\" ; git push -uv gh {USER}"
 
 let bin: unit =
     mkdir "bin"
