@@ -91,14 +91,13 @@ let ref: unit =
     File.WriteAllText("ref/.gitignore", "*\n!.gitignore\n")
 
 let dirs: unit =
-    vscode
     bin
     doc
     lib
-    inc
-    src
     tmp
     ref
+    vscode // VSCode.fs
+    src    // Cpp.fs
 
 let giti: unit =
     File.WriteAllText(".gitignore", "~\n*.swp\n*.log\n*.exe\n*.o\ntarget/\nobj/\n!.gitignore\n")
@@ -120,15 +119,16 @@ qemu-system-x86
 """
     )
 
-let doxygen: unit = File.WriteAllText(".doxygen", "")
+let doxygen: unit = //
+    File.WriteAllText(".doxygen", "")
 
 let files: unit =
     giti
-    format
     doxygen
     apt
-    mk
-    cmake
+    format // Format.fs
+    mk     // Make.fs
+    cmake  // CMake.fs
 
 let fsharp: unit =
     touch $"lib/{APP}.fs"

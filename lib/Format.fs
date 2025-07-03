@@ -17,12 +17,13 @@ AllowShortFunctionsOnASingleLine: All
 """
     )
 
-let prettier: unit = File.WriteAllText(".prettierc", "")
+let prettier: unit = //
+    File.WriteAllText(".prettierc", "")
 
+let editorconfig: unit = //
+    File.WriteAllText(".editorconfig", "")
 
-let editorconfig: unit = File.WriteAllText(".editorconfig", "")
-
-let format :unit = // 
+let format: unit = //
     cf
     prettier
     editorconfig
